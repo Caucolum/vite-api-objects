@@ -15,12 +15,16 @@ const Renderer = <T,>({ Component }: RendererProps<T>) => {
   return <Component {...(state as T)} />;
 };
 
+function withStateProps<T>(Component: React.ComponentType<T>) {
+  return <Renderer Component={Component} />;
+}
+
 function App() {
 
   return <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Renderer Component={DataPage}/>} />
-      <Route path='/data' element={<Renderer Component={HelloPage}/>} />
+      <Route path="/" element={withStateProps(DataPage)} />
+      <Route path="/data" element={withStateProps(HelloPage)} />
     </Routes>
   </BrowserRouter>
 }
