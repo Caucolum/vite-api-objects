@@ -1,22 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ApiProvider, useApi } from './core/context';
+import { client } from './api-query-objects/factory';
+
+import HelloPage from './pages/hello';
+import DataPage from './pages/data';
 
 import './App.css';
-import DataPage from './pages/data';
-import HelloPage from './pages/hello';
 
 function App() {
-  const { client: { imagesList } } = useApi();
-  const { makeRequest, data } = imagesList();
+  const { makeRequest, data } = client.imagesList();
 
-  return <ApiProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<DataPage makeRequest={makeRequest} />} />
-        <Route path='/data' element={<HelloPage data={data}/>} />
-      </Routes>
-    </BrowserRouter>
-  </ApiProvider>
+  return <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<DataPage makeRequest={makeRequest} />} />
+      <Route path='/data' element={<HelloPage data={data}/>} />
+    </Routes>
+  </BrowserRouter>
 }
 
 export default App;
