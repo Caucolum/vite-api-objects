@@ -2,7 +2,7 @@ import { ApiEndpoint } from "@caucolum/api-query-object";
 
 const baseURL: string = 'https://dog.ceo/api';
 
-interface ImagesListDataProps {
+export interface ImagesListDataProps {
     message: string[],
     status: string,
 }
